@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
+
+<script src="firabase.init.js"></script>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;overflow: auto;
+
+}
+
+b{
+  margin-bottom: 2px;
+}
+
+/* Full-width input fields */
+input[type=text],input[type=number] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1.75px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 7px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Set a style for all buttons */
+button{
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin-top: 50px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 20%;
+  border-radius: 3px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin-top: 24px;
+  margin-bottom: 0px;
+  position: relative;
+}
+
+img.dp {
+  width: 18%;
+  border-radius: 50%;
+}
+
+img.edit {
+  width: 3%;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+   position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+  padding-top: 20px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin-top: 2.5%;
+  margin-bottom: 3%;
+  margin-left: 10%;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 80%; 
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+
+
+<div id="id01" onmouseover="getImage()">
+  
+  <div class="modal-content animate" >
+    <div class="imgcontainer">
+      <span class="close" title="Close Modal">&#128206;</span>
+      <img src="images\\user.jpg" alt="Avatar" id="dp" class="dp"><img src="images\\edit1.jpg" class="edit" onclick="edit()">
+      <input type="file" id="filebtn" onchange="readURL(this)" style="display: none;">
+    </div>
+
+    <div class="container" >
+
+      <img src="images\\user.jpg" style="width: 2%;margin-right: 5px;">
+      <label class="top" for="username"><b>Username</b></label>
+      <input type="text" placeholder="Enter a Username" name="username" onfocus="red(0)" onblur="black(0)" required>
+      
+      <img src="images\\user.jpg" style="width: 2%;margin-right: 5px;">
+      <label class="top" for="name"><b>Name</b></label>
+      <input type="text" placeholder="Enter Your Name"  name="name" onfocus="red(1)" onblur="black(1)" required>
+
+      <img src="images\\phone1.jpg" style="width: 2%;margin-right: 4px;">
+      <label class="top" for="phone"><b>Phone Number</b></label>
+      <input type="number" placeholder="Enter Your Phone No." name="phone" onfocus="red(2)" onblur="black(2)" required>
+
+      <img src="images\\age1.jpg" style="width: 2%;margin-right: 5px;">
+      <label class="top" for="age"><b>Age</b></label>
+      <input type="number" placeholder="Enter Your Age" name="age" onfocus="red(3)" onblur="black(3)" required>
+
+      <img src="images\\pro.jpg" style="width: 2%;margin-right: 5px;">
+      <label class="top" for="pro"><b>Profession</b></label>
+      <input type="text" placeholder="Enter Your Profession" name="pro"  onfocus="red(4)" onblur="black(4)" required>
+
+      <img src="images\\colg.jpg" style="width: 2%;margin-right: 5px;">
+      <label class="top" for="colgname"><b>College Name</b></label>
+      <input type="text" placeholder="Enter Your College Name" name="colgname" onfocus="red(5)" onblur="black(5)" required>
+        
+      <center><button style="font-size: large;" onclick="save_profile()">Save Profile</button></center>
+    </div>
+  </div>
+</div>
+<script>
+
+function getImage(){
+
+var storageRef;
+  var email = firebase.auth().currentUser.email;
+  var emailname = ename(email);
+  storageRef = firebase.storage().ref('users');
+
+storageRef.child(emailname+'.jpeg').getDownloadURL().then(function(url) {
+  document.getElementById('dp').setAttribute('src',url);
+  firebase.firestore().collection("User").doc(emailname).update({photo:url});
+       }).catch(function(error) {
+      // Handle any errors
+     });
+}
+
+    function red(num){
+
+        document.getElementsByClassName("top")[num].style.color = "red";
+    }
+    function black(num){
+
+        document.getElementsByClassName("top")[num].style.color = "black";
+    }
+    function edit(){
+      document.getElementById("filebtn").click();
+    }
+    function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementsByClassName("dp")[0].setAttribute("src",e.target.result);
+
+                    if(firebase.auth().currentUser!=null){
+                    var email = firebase.auth().currentUser.email;
+                    var emailname = ename(email);
+                    var storageRef = firebase.storage().ref('users/'+emailname+'.jpeg');
+
+                    storageRef.putString(e.target.result, 'data_url').then(function(snapshot) {
+                      storageRef.getDownloadURL().then(function(url) {
+                        //firebase.database().ref('users/'+emailname+'/photo').set(url);
+                        firebase.database().ref().child('messages').push({
+                    'text': url,
+                    'type':'image',
+                    'time': new Date().getTime()
+                      });
+                        firebase.firestore().collection("User").doc(emailname).update({photo:url});
+                      });
+                      alert('Uploaded a blob or file!'+emailname);
+                     });
+                    }
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function save_profile(){
+
+          var username = document.getElementsByName('username')[0].value;
+          var name = document.getElementsByName('name')[0].value;
+          var phone = document.getElementsByName('phone')[0].value;
+          var age = document.getElementsByName('age')[0].value;
+          var pro = document.getElementsByName('pro')[0].value;
+          var colgname = document.getElementsByName('colgname')[0].value;
+          
+          var email = firebase.auth().currentUser.email;
+          if(firebase.auth().currentUser == null){email = "harivignesh262@gmail.com";}
+
+            var bool = name==="" || (pro ==="" || colgname === "");
+            if(!bool){
+            if(age!=NaN && phone!=NaN){
+              var emailname = ename(email);
+              alert(emailname);
+              var db = firebase.firestore();
+              db.collection("User").doc(emailname).update({
+            "username":username,
+          "name":name,
+          "phone":phone,
+          "age":age,
+          "pro":pro,
+          "colgname":colgname,
+          "email":email,
+          "uid":firebase.auth().currentUser.uid,
+          "no_of_friends":0
+        }).then(function(docRef) {
+        console.log("Document written with ID: ", docRef.id);
+        });
+          //push({"username":username,"name":name,"phone":phone,"age":age,"pro":pro,"colgname":colgname});
+            }
+          }
+
+          location.href="newcover.html"
+}
+         
+       function ename(email){
+
+         var num = email.lastIndexOf("@gmail.com");
+         var emailname = email.slice(0,num);
+         var result = emailname.match(/\./g);
+         if(result!=null){
+         var size = Object.keys(result).length;
+         for(var i=0;i<size;i++){
+             emailname = emailname.replace(".",",,");
+         }
+         }
+          return emailname;
+        }
+
+</script>
+
+</body>
+</html>

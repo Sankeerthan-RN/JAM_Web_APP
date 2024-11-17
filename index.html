@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href ="css\bootstrap-4.3.1.min.css" rel ="stylesheet" />
+    <link href ="css/style.css" rel ="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="kp.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+    <style>
+        .bar{
+            line-height:1.5;color:#495057;background-color:#fff;background-clip:padding-box;border:1px solid #ced4da;border-radius:.25rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out
+        }
+    </style>
+</head>
+<body> 
+   
+    <span class ="top"></span>
+    <div class ="container-fluid bg-white chatbox shadow-lg">
+        <div class ="row h-100"> 
+            <div class ="col-md-4 pr-0">
+                <div class ="card h-100 ">
+                    <div class="card-header">
+                        <div class ="row">
+        <div class ="col-md-10">
+            <img id="imgProfile" src="images/pp.png"  onload="showFriends()" class="rounded-circle profile-pic" />
+
+        </div>
+        <div class =" col-md-2 mt-3">
+            <div class="dropleft ">
+        
+                <span class ="dropdown-toggle" data-toggle="dropdown">
+                    <i class ="fa fa-ellipsis-v " style="cursor:pointer; float:right;" onclick="hideChatList()"></i>
+                </span>
+                <div class="dropdown-menu">
+                   
+                    <button  type ="button" class="dropdown-item"   data-toggle="modal" data-target="#modalFriendList" onclick="FriendList()">Add Users</button>
+                    <button  type ="button" class="dropdown-item"   data-toggle="modal" data-target="#modalGroupList" onclick="GroupList()">Add Group</button>
+                    <div id="lnkSignIn" onclick="signIn()" class="dropdown-item">sign In</div>
+                    <div id="lnkSignOut" onclick="signOut()" class="dropdown-item" style="display: none  ;">signOut </div>
+                    
+                </div>
+                <div class="modal fade" id="modalFriendList" role="dialog">
+                    <div class="modal-dialog">
+                    
+                     
+                      <div class="modal-content">
+                        <div class="card">
+                          <div class="card-header ">
+                             Friend List
+                             <span class="close" data-dismiss="modal" style="cursor: pointer;" >&times;</span>
+                          </div>
+                          
+                          <ul class ="list-group list-group-flush" id="dd">
+                             
+                          </ul>
+                        </div>
+                        
+                      </div>
+                      
+                    
+                    
+                  
+                  
+               </div>  
+              </div>
+              <div class="modal fade" id="modalGroupList" role="dialog">
+                <div class="modal-dialog">
+                    
+                  <div class="modal-content" style="max-height:93vh;" >
+                    
+                    <div class="card " >
+                      <div class="card-header " >
+                         Friend List
+                         <span class="close" data-dismiss="modal" style="cursor: pointer;" >&times;</span>
+                      </div>
+                      <div id="vv">
+                      </div>
+                      <div class="list-group-item" style="background-color:#f8f8f8;position: relative;">
+                      <input type ="text" id="search2" onkeyup="SearchBar()"  placeholder ="Search"    style="width: 88%;" class="form-rounded bar"/><button id="searchbtn" style="float:right" class="bar" onclick="Onup()">add</button>
+                      </div>
+                      <ul class ="list-group list-group-flush" id="pp" style="overflow-y: hidden;">
+                      </ul>
+                      
+                    </div>
+                        <center>
+                    <button class="btn btn-success"  style="height: 5vh;background-color:rgb(24, 156, 42);width: 70%;border-radius: 2;" onclick="createGroup()">
+                        CREATE GROUP
+                    </button>
+                        </center>
+                 
+                  </div>
+                   
+           </div>  
+          </div>
+
+          <div class="modal fade" id="kd" role="dialog">
+            <div class="modal-dialog">
+                
+              <div class="modal-content" style="max-height:93vh;" >
+                
+                <div class="card " >
+                  
+                  <div id="vv">
+                  </div>
+                  <div class="li  st-group-item" style="background-color:#d18f14;position: relative;">
+                    <br><br>
+                
+                   <center> NEW GROUP</center>
+                  </div>
+                 <center>
+                 
+                    <div class="circle">
+                     
+                    <img src="group.jpg" style="width:200px" id="dp" onclick="edit()">
+                      <input type="file" accept="image/*" id="filebtn" onchange="readURL(this)" style="display: none;">
+                    </div>
+                
+                  
+                  <br><br>
+
+                  
+                  <input type="text" id ="line"></input><br>
+                  <br>
+                  <br>
+                  <button id="button" class="btn btn-success" onclick ="groupsubmit()">Create</button>
+              
+                </center>
+               
+                </div>
+               
+             
+              </div>
+               
+       </div>  
+      </div>
+            </div>
+        </div> 
+        
+                         </div>
+                        
+                    </div>
+                    <li class="list-group-item " style ="background-color:rgb(82, 81, 81)">
+                        <input type ="text" id="search" onkeyup="SearchBar()"  placeholder ="Serach"   Add friend" style="width: 88%;" class="form-rounded bar"/><button id="searchbtn" style="float:right" class="bar" onclick="Ondown()">add</button>
+                    </li>
+                    <ul class ="list-group list-group-flush" id="listView">
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8 pl-0">
+               <div  id ="chatPanel"class ="card " style="display: none;">
+                   <div class="card-header">
+                       <div class ="row ">
+                           <div class="col-md-2">
+                           <img src ="images/pp.png" id="FriendProfilePic" class ="profile-pic"/>
+                        </div>
+                           <div class="col-md-6">
+
+                           <div class="name" id="FriendName">any name</div>
+                           <div class="under-name" id="LastSeen">Lastseen</div>
+a
+                        </div>
+                           <div class="col-md-4 icon">
+                               <i class ="fa fa-search"></i>
+                               <span class="dropdown">
+                                <span class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fas fa-paperclip ml-4"></i>
+                                </span>
+                                <div class="dropdown-menu">
+                                    <a href="#" class="dropdown-item"  id ="dp" onclick="ChooseImage()">
+                                        Images
+                                    
+                                    
+                                     <input type="file" id="imageFile" onchange="SendImage(this);" accept="image/*" style="display:none;" >
+                                     
+                                    </a>
+                                    <a href="#" class="dropdown-item" onclick="ChooseDoc()">Document
+
+                                        <input type="file" id="imgFile"  onchange="myFunction(this);" style="display:none;"  >
+                                    </a>
+                                    
+                                    <a href="#" class="dropdown-item">Camera</a>
+                                    <a href="#" class="dropdown-item"  onclick="ChooseVideo()"  >Video
+
+                                        <input type="file" id="videoFile" onchange="SendVideo(this);" accept="Video/*" style="display:none;">
+                                    </a>
+
+                                </div>
+                            </span>
+                               <i class="fa fa-ellipsis-v ml-4"></i>
+                           </div>
+
+                       </div>
+                       
+                   </div>
+                    <div  class="card-body" id="messages">
+                      <div id="loader">
+                          loading
+                     
+                        <div class="row">
+                           
+                            <div class="col-2 col-sm-1 col-md-1">
+                                <img src="images/pp.png" class="profile-pic"/>
+                            </div>
+                            <div class="col-6 col-sm-5 col-md-5">
+                               
+                                <p class="receive"> asfdg
+                                <span class="time float-right">1:38 pm</span>
+                               
+                            </p>
+                            </div>
+                            </div>
+                      
+
+
+                            <div class="row justify-content-end">
+                                <div class="col-6 col-sm-5 col-md-5 ">
+                                    <p class="sent float-right "> asfdg
+                                    <span class="time float-right">1:38 pm</span>
+                                </p>
+                                </div>
+                                <div class="col-2 col-sm-1 col-md-1 float-right">
+                                    <img src="images/pp.png" class="profile-pic"/>
+                                </div>
+                                
+                           
+                            </div>
+                        </div>
+                       
+            
+                    </div>
+                    <div class="card-footer">
+                        <div class="row" style="position:relative;">
+                            <div class="col-md-12" id="emoji" style="display:none;">
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#smiley" role="tab" aria-controls="home" aria-selected="true">Smiley</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Shape</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="smiley" role="tabpanel" aria-labelledby="home-tab">
+
+                                    </div>
+                                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+                                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2 col-md-1" style="cursor:pointer;">
+                                <i class="far fa-grin fa-2x" onclick="showEmojiPanel()"></i>
+                            </div>
+                            <div class="col-8 col-md-10">
+                                <input id="txtMessage" onclick="OnKeyDown()"  type="text" onfocus="hideEmojiPanel()" placeholder="Type here" class="form-control form-rounded" />
+                            </div>
+                            <div class="col-2 col-md-1">
+                                <i style="cursor:pointer;" id="audio" onclick="record(this)" class="fas fa-microphone fa-2x"></i>
+                                <i id="send" class="fa fa-paper-plane fa-2x" style="display:none"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+               <div id="divStart" Class="text-center">
+                  <i class="fa fa-comments" style="font-size: 250px;"> </i>
+                  <a href="#" onclick="showChatList()" class="d-md-none">newchat</a>
+                  <button onclick="signIn()" class="btn btn-primary">Sign In</button>
+               </div>
+            </div>
+        </div>
+    </div>
+    <script src="Scripts\jquery-3.4.1.min.js"></script>
+    <script src="Scripts\popper-1.14.7.min.js"></script>
+    <script src="Scripts\bootstrap-4.3.1.min.js"></script>
+    <script src="firabase.init.js"></script>
+  
+    <script src="chat2.js"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
+
+    <script src="firabase.init.js"></script>
+
+    
+    
+
+    <script src="/__/firebase/init.js"></script>
+
+  
+</body>
+
+</html>
