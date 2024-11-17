@@ -4,6 +4,9 @@
 
 **JAM** is an innovative application that bridges the gap between students and educators, fostering seamless interaction, efficient knowledge sharing, and collaborative learning. Designed with essential features for educational institutions, JAM Search is a one-stop solution for classroom information sharing, testing, and much more.
 
+## Web App ##
+![JAM WB APP ](Screenshots/Image_combined.jpg "JAM WEB APP")
+
 ---
 
 ## 🌟 Highlights
@@ -31,13 +34,10 @@
 - An open Q&A space where students and teachers can exchange ideas and seek solutions to their questions.
 
 ### **Jam Club**
-- Manage college clubs effortlessly with a dedicated space for club activities and events.
-
-### **Jam Vault**
-- A file manager for organizing notes, eBooks, and other educational resources.
+- Manage college clubs effortlessly with a dedicated space for club activities and events
 
 ### **Jam Website**
-- Enjoy all features of Q Search on the web, with the same intuitive experience as the app.
+- Enjoy all features of  on the web, with the same intuitive experience as the app.
 
 ---
 
@@ -55,8 +55,8 @@ With the growing inclination of the education system toward technology, Jam is m
 
 ## 📚 Getting Started
 To explore the features of JAM:
-2. Create an account as a **student**, **teacher**, or **admin**.
-3. Dive into a seamless learning and teaching experience.
+1. Create an account as a **student**, **teacher**, or **admin**.
+2. Dive into a seamless learning and teaching experience.
 
 ---
 
