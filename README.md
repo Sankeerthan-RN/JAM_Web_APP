@@ -2,7 +2,7 @@
  
 # Revolutionizing Digital Learning
 
-**JAM** is an innovative application that bridges the gap between students and educators, fostering seamless interaction, efficient knowledge sharing, and collaborative learning. Designed with essential features for educational institutions, JAM Search is a one-stop solution for classroom information sharing, testing, and much more.
+**JAM** is an innovative application that bridges the gap between students and educators, fostering seamless interaction, efficient knowledge sharing, and collaborative learning. Designed with essential features for educational institutions and it is one-stop solution for classroom information sharing, testing, and much more.
 
 ## Web App ##
 ![JAM WB APP ](Screenshots/Image_combined.jpg "JAM WEB APP")
